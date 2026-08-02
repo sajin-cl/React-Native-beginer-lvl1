@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 
 export default function LoginScreen() {
 
-    const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+    const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
+
+    const togglePasswordVisiblity = () => {
+        setIsPasswordHidden(prev => !prev)
+    };
 
     return (
         <View
             style={styles.container}
         >
-            <Text
-                style={styles.greetingText}
-            >Welcome Back</Text>
+            <Text style={styles.greetingText}>
+                Welcome Back
+            </Text>
 
             <TextInput
                 placeholder="Enter your email"
@@ -23,11 +28,16 @@ export default function LoginScreen() {
 
             <TextInput
                 placeholder="password"
-                secureTextEntry={!isPasswordHidden}
+                secureTextEntry={isPasswordHidden}
                 autoCorrect={false}
                 autoCapitalize="none"
                 style={styles.inputBox}
             />
+            <Pressable onPress={togglePasswordVisiblity}>
+                <Text>
+                    {isPasswordHidden ? "Show Password" : "Hide Password"}
+                </Text>
+            </Pressable>
         </View>
 
     );
