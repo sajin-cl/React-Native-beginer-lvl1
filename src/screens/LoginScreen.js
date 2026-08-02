@@ -1,20 +1,32 @@
+import { useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
 export default function LoginScreen() {
+
+    const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+
     return (
         <View
-            style={styles?.container}
+            style={styles.container}
         >
             <Text
-                style={styles?.greetingText}
+                style={styles.greetingText}
             >Welcome Back</Text>
 
             <TextInput
                 placeholder="Enter your email"
-                style={styles?.emailField}
+                style={styles.inputBox}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
+            />
+
+            <TextInput
+                placeholder="password"
+                secureTextEntry={!isPasswordHidden}
+                autoCorrect={false}
+                autoCapitalize="none"
+                style={styles.inputBox}
             />
         </View>
 
@@ -34,12 +46,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20
     },
-    emailField: {
+    inputBox: {
         borderWidth: 1,
         borderColor: '#ccc',
         padding: 15,
         borderRadius: 12,
-        width: '100%'
+        width: '100%',
+        marginBottom: 20
     }
 
 });
