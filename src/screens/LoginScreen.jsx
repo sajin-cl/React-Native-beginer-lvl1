@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import InputField from "../components/ InputField";
 import PrimaryBtn from "../components/PrimaryBtn";
 
@@ -7,7 +7,7 @@ import PrimaryBtn from "../components/PrimaryBtn";
 
 export default function LoginScreen() {
 
-    const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [errors, setErrors] = useState({
@@ -16,10 +16,7 @@ export default function LoginScreen() {
     })
 
 
-    const togglePasswordVisibility = () => {
-        setIsPasswordHidden(prev => !prev)
-    };
-
+   
     //for email
     const handleEmailChange = (text) => {
         setEmail(text);
@@ -92,23 +89,18 @@ export default function LoginScreen() {
             keyboardType={'email-address'}
             onChangeText={handleEmailChange}
             value={email}
-            errors={errors.email}
+            error={errors.email}
             />
 
             <InputField
              placeholder={"Enter your password"}
-             secureTextEntry={isPasswordHidden}
+             keyboardType={'password'}
              onChangeText={handlePasswordChange}
              value={password}
-             errors={errors.password}
+             error={errors.password}
+             isPassword
+             
             />
-
-
-            <Pressable onPress={togglePasswordVisibility} >
-                <Text>
-                    {isPasswordHidden ? "Show Password" : "Hide Password"}
-                </Text>
-            </Pressable>
 
             <PrimaryBtn handleLogin={handleLogin}/>
         </View>
