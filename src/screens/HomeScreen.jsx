@@ -2,55 +2,74 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 
 export default function HomeScreen({ navigation }) {
 
-  const handleLogout = () => {
-    navigation.replace("Login");
-  };
+    const handleProduct = () => {
+        navigation.navigate('ProductDetails', {
+            id: 101,
+            name: 'Nichie Shoe',
+            price: 2000
+        })
+    }
 
-  return (
-    <View style={styles.container}>
+    const handleLogout = () => {
+        navigation.replace("Login");
+    };
 
-      <Text style={styles.title}>
-        Welcome Home 
-      </Text>
+    return (
+        <View style={styles.container}>
 
-      <Pressable
-        style={styles.button}
-        onPress={handleLogout}
-      >
-        <Text style={styles.buttonText}>
-          Logout
-        </Text>
-      </Pressable>
+            <Text style={styles.title}>
+                Welcome Home
+            </Text>
 
-    </View>
-  );
+            <Pressable
+                style={styles.button}
+                onPress={handleProduct}
+            >
+                <Text
+                    style={styles.buttonText}
+                >View Product</Text>
+
+            </Pressable>
+
+            <Pressable
+                style={styles.button}
+                onPress={handleLogout}
+            >
+                <Text style={styles.buttonText}>
+                    Logout
+                </Text>
+            </Pressable>
+
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
 
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 30,
-  },
+    title: {
+        fontSize: 28,
+        fontWeight: "bold",
+        marginBottom: 30,
+    },
 
-  button: {
-    backgroundColor: "black",
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderRadius: 8,
-  },
+    button: {
+        backgroundColor: "black",
+        paddingVertical: 14,
+        paddingHorizontal: 40,
+        borderRadius: 8,
+        marginBottom: 15,
+    },
 
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "600",
-  },
+    buttonText: {
+        color: "white",
+        fontSize: 16,
+        fontWeight: "600",
+    },
 
 });
