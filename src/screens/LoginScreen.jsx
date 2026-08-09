@@ -5,7 +5,7 @@ import PrimaryBtn from "../components/PrimaryBtn";
 
 
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
 
 
     const [password, setPassword] = useState('');
@@ -16,7 +16,7 @@ export default function LoginScreen() {
     })
 
 
-   
+
     //for email
     const handleEmailChange = (text) => {
         setEmail(text);
@@ -62,14 +62,15 @@ export default function LoginScreen() {
 
         setErrors(newErrors);
 
-        
+
         if (newErrors.email || newErrors.password) {
             console.log("Login failed");
             return;
         }
 
-        console.log("Login Successfully");
-        console.log({ email, password });
+        // Validation successful --> Navigate to the Home page
+        navigation.replace('Home')
+
 
     }
 
@@ -84,25 +85,25 @@ export default function LoginScreen() {
             </Text>
 
 
-            <InputField 
-            placeholder={'Enter your email'}
-            keyboardType={'email-address'}
-            onChangeText={handleEmailChange}
-            value={email}
-            error={errors.email}
+            <InputField
+                placeholder={'Enter your email'}
+                keyboardType={'email-address'}
+                onChangeText={handleEmailChange}
+                value={email}
+                error={errors.email}
             />
 
             <InputField
-             placeholder={"Enter your password"}
-             keyboardType={'password'}
-             onChangeText={handlePasswordChange}
-             value={password}
-             error={errors.password}
-             isPassword
-             
+                placeholder={"Enter your password"}
+                keyboardType={'password'}
+                onChangeText={handlePasswordChange}
+                value={password}
+                error={errors.password}
+                isPassword
+
             />
 
-            <PrimaryBtn handleLogin={handleLogin}/>
+            <PrimaryBtn handleLogin={handleLogin} text={'Login'} />
         </View>
 
     )
@@ -120,5 +121,5 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20
-    }    
+    }
 })

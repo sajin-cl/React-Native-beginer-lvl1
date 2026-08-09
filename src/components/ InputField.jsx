@@ -7,6 +7,8 @@ import {
     StyleSheet,
 } from "react-native";
 
+
+
 export default function InputField({
     placeholder,
     keyboardType = "default",

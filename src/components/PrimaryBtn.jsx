@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
 
-export default function PrimaryBtn({handleLogin}) {
+export default function PrimaryBtn({handleLogin,text}) {
 
 
     return (
@@ -9,7 +9,7 @@ export default function PrimaryBtn({handleLogin}) {
         <Pressable
             onPress={handleLogin}
             style={({ pressed }) => [styles.primaryBtn, { backgroundColor: pressed ? '#1D4ED8' : '#2563EB' }]}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>{text}</Text>
         </Pressable>
     )
 }
