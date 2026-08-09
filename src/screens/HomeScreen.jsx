@@ -1,10 +1,4 @@
-import {
-    View,
-    Text,
-    Pressable,
-    StyleSheet,
-    FlatList,
-} from "react-native";
+import { View, Text, Pressable, StyleSheet, FlatList, } from "react-native";
 
 const products = [
     {
@@ -71,6 +65,7 @@ export default function HomeScreen({ navigation }) {
             <FlatList
                 data={products}
                 keyExtractor={(product) => product.id}
+                showsVerticalScrollIndicator={false}
                 //renderItem={renderProduct}
                 renderItem={({ item: product }) => (
                     <Pressable
