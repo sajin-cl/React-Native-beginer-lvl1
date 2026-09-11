@@ -15,6 +15,7 @@ export default function LoginScreen({ navigation }) {
         password: "",
     })
 
+    const [isLoading, setIsLoading] = useState(false);
 
 
     //for email
@@ -39,6 +40,7 @@ export default function LoginScreen({ navigation }) {
 
 
     const handleLogin = () => {
+
 
         const newErrors = {
             email: '', password: ''
@@ -68,8 +70,15 @@ export default function LoginScreen({ navigation }) {
             return;
         }
 
+
+
         // Validation successful --> Navigate to the Home page
-        navigation.replace('Home')
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            navigation.replace("Home");
+        }, 2000);
 
 
     }
@@ -103,7 +112,7 @@ export default function LoginScreen({ navigation }) {
 
             />
 
-            <PrimaryBtn onPress={handleLogin} text={'Login'} />
+            <PrimaryBtn onPress={handleLogin} text={isLoading ? 'Logging in..' : 'Login'} disabled={isLoading} />
         </View>
 
     )

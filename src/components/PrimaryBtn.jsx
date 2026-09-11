@@ -1,14 +1,15 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
 
-export default function PrimaryBtn({onPress,text}) {
+export default function PrimaryBtn({onPress,text,disabled}) {
 
 
     return (
 
         <Pressable
             onPress={onPress}
-            style={({ pressed }) => [styles.primaryBtn, { backgroundColor: pressed ? '#1D4ED8' : '#2563EB' }]}>
+            disabled={disabled}
+            style={({ pressed }) => [styles.primaryBtn, { backgroundColor:disabled ? '#93C5FD': pressed ? '#1D4ED8' : '#2563EB' }]}>
             <Text style={styles.buttonText}>{text}</Text>
         </Pressable>
     )
