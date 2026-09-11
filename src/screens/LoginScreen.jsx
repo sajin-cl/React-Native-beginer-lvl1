@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import InputField from "../components/InputField";
 import PrimaryBtn from "../components/PrimaryBtn";
+import { fakeLogin } from "../services/authService";
 
 
 
@@ -39,7 +40,7 @@ export default function LoginScreen({ navigation }) {
     };
 
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
 
 
         const newErrors = {
@@ -75,13 +76,21 @@ export default function LoginScreen({ navigation }) {
         // Validation successful --> Navigate to the Home page
         setIsLoading(true);
 
-        setTimeout(() => {
-            setIsLoading(false);
+        try {
+            const result = await fakeLogin(email, password);
+
+            console.log(result);
             navigation.replace("Home");
-        }, 2000);
+        }
+        catch (error) {
+            console.log('login failed',error);
+        }
+        finally {
+            setIsLoading(false);
+        }
 
 
-    }
+    };
 
 
 
