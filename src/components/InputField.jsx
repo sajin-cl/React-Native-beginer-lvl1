@@ -36,6 +36,12 @@ export default function InputField({
                 secureTextEntry={isPassword && isPasswordHidden}
             />
 
+            {error && (
+                <Text style={styles.errorMessage}>
+                    {error}
+                </Text>
+            )}
+
             {isPassword && (
                 <Pressable onPress={togglePasswordVisibility}>
                     <Text>
@@ -46,11 +52,6 @@ export default function InputField({
                 </Pressable>
             )}
 
-            {error && (
-                <Text style={styles.errorMessage}>
-                    {error}
-                </Text>
-            )}
         </View>
     );
 }
@@ -67,12 +68,12 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 12,
         width: "100%",
-        marginBottom: 10,
+        marginBottom: 5,
     },
 
     errorMessage: {
         color: "red",
-        marginTop: 5,
+        marginTop: 1,
         alignSelf: "flex-start",
     },
 });

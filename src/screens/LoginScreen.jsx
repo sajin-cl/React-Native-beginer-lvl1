@@ -17,6 +17,7 @@ export default function LoginScreen({ navigation }) {
     })
 
     const [isLoading, setIsLoading] = useState(false);
+    const [serverError, setServerError] = useState("");
 
 
     //for email
@@ -27,6 +28,7 @@ export default function LoginScreen({ navigation }) {
             ...prev,
             email: ""
         }));
+        setServerError("");
     };
 
     //for password
@@ -37,6 +39,8 @@ export default function LoginScreen({ navigation }) {
             ...prev,
             password: ""
         }));
+
+        setServerError("");
     };
 
 
@@ -72,18 +76,19 @@ export default function LoginScreen({ navigation }) {
         }
 
 
-
+        setServerError("")
         // Validation successful --> Navigate to the Home page
         setIsLoading(true);
 
         try {
             const result = await fakeLogin(email, password);
 
-            console.log(result);
+            console.log(result.message);
             navigation.replace("Home");
         }
         catch (error) {
-            console.log('login failed',error);
+            console.log('login failed', error.message);
+            setServerError(error.message);
         }
         finally {
             setIsLoading(false);
@@ -122,6 +127,14 @@ export default function LoginScreen({ navigation }) {
             />
 
             <PrimaryBtn onPress={handleLogin} text={isLoading ? 'Logging in..' : 'Login'} disabled={isLoading} />
+
+            {serverError && (
+                <Text style={styles.serverError}>
+                    {serverError}
+                </Text>
+            )}
+
+
         </View>
 
     )
@@ -139,5 +152,11 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20
-    }
+    },
+    serverError: {
+        color: "red",
+        marginTop: 5,
+        marginBottom: 5,
+        textAlign: "center",
+    },
 })

@@ -52,6 +52,7 @@ export default function HomeScreen({ navigation }) {
 
     const handleLogout = () => {
         navigation.replace("Login");
+        console.log('logout succesfully')
     };
 
 
