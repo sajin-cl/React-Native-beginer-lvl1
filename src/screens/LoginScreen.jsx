@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import InputField from "../components/ InputField";
+import InputField from "../components/InputField";
 import PrimaryBtn from "../components/PrimaryBtn";
 
 
@@ -103,7 +103,7 @@ export default function LoginScreen({ navigation }) {
 
             />
 
-            <PrimaryBtn handleLogin={handleLogin} text={'Login'} />
+            <PrimaryBtn onPress={handleLogin} text={'Login'} />
         </View>
 
     )

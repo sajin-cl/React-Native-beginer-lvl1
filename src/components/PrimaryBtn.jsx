@@ -1,13 +1,13 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
 
-export default function PrimaryBtn({handleLogin,text}) {
+export default function PrimaryBtn({onPress,text}) {
 
 
     return (
 
         <Pressable
-            onPress={handleLogin}
+            onPress={onPress}
             style={({ pressed }) => [styles.primaryBtn, { backgroundColor: pressed ? '#1D4ED8' : '#2563EB' }]}>
             <Text style={styles.buttonText}>{text}</Text>
         </Pressable>
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
     },
-})
+});
